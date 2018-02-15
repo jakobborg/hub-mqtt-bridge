@@ -1,0 +1,23 @@
+{
+  "name": "hub-mqtt-bridge",
+  "version": "1.0.0",
+  "description": "hub to mqtt bridge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakobborg/hub-mqtt-bridge.git"
+  },
+  "author": "Jakob Borg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakobborg/hub-mqtt-bridge/issues"
+  },
+  "homepage": "https://github.com/jakobborg/hub-mqtt-bridge#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mqtt": "^2.15.2"
+  }
+}

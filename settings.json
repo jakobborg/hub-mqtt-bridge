@@ -1,0 +1,9 @@
+{
+    "mqtt": {
+        "host": "<host>",
+        "port": 8883,
+        "user": "<user>",
+        "pass": "<pass>"
+    },
+    "auth_key": "<key>"
+}
