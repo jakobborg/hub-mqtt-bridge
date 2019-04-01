@@ -17,6 +17,7 @@ var mqttclient = mqtt.connect(settings.mqtt.host, mqtt_options);
 // setup express.
 
 var app = express();
+app.use(express.json());
 
 app.get('/loc', function(req, res) {
     var auth = req.headers['x-hub-auth'];
@@ -39,7 +40,28 @@ app.get('/loc', function(req, res) {
             return v;
         }); 
 
-        mqttclient.publish('location/' + device, result);
+        var topic = 'device/' + device + '/location';
+
+        console.log("publishing " + result + ' to ' + topic);
+
+        mqttclient.publish(topic, result, function(error, packet) {
+            if (error) {
+                console.log(error);
+            }
+        });
+        res.sendStatus(200);
+    }
+});
+
+app.post('/publish', function(req, res) {
+    var auth = req.headers["x-hub-auth"];
+    if (auth !== settings.auth_key) {
+        res.sendStatus(403);
+    } else {
+        var topic = req.body.topic;
+        var message = req.body.message;
+
+        console.log('publishing ' + message + ' to ' + topic);
 
         res.sendStatus(200);
     }
