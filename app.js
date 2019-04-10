@@ -53,8 +53,8 @@ app.get('/loc', function(req, res) {
     }
 });
 
-app.post('/', function(req, res) {
-    console.log('Received request:' + JSON.stringify(req));
+app.post('/', function(req, res) {    
+    console.log('Received request:' + JSON.stringify(req.body));    
     var auth = req.headers["x-hub-auth"];
     if (auth !== settings.auth_key) {
         res.sendStatus(403);
@@ -63,6 +63,12 @@ app.post('/', function(req, res) {
         var message = req.body.message;
 
         console.log('publishing ' + message + ' to ' + topic);
+
+        mqttclient.publish(topic, message, function(error, packet) {
+            if (error) {
+                console.error(error);
+            }
+        });
 
         res.sendStatus(200);
     }
