@@ -54,6 +54,7 @@ app.get('/loc', function(req, res) {
 });
 
 app.post('/', function(req, res) {
+    console.log('Received request:' + JSON.stringify(req));
     var auth = req.headers["x-hub-auth"];
     if (auth !== settings.auth_key) {
         res.sendStatus(403);
