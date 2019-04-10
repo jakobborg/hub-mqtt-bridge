@@ -53,7 +53,7 @@ app.get('/loc', function(req, res) {
     }
 });
 
-app.post('/publish', function(req, res) {
+app.post('/', function(req, res) {
     var auth = req.headers["x-hub-auth"];
     if (auth !== settings.auth_key) {
         res.sendStatus(403);
