@@ -62,6 +62,10 @@ app.post('/', function(req, res) {
         var topic = req.body.topic;
         var message = req.body.message;
 
+        if (typeof message === "object") {
+            message = JSON.stringify(message);
+        }
+
         console.log('publishing ' + message + ' to ' + topic);
 
         mqttclient.publish(topic, message, function(error, packet) {
